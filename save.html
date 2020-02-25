@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <script src="js/articles.js"></script>
+  </head>
+  <style>
+    h1 {
+      text-align: center;
+      font-size: 40px;
+    }
+    form {
+      margin: 0 auto;
+      width: 250px;
+    }
+  </style>
+
+  <body>
+    <h1>Aggiorna Articolo</h1>
+
+    <body style="text-align:center;">
+        Codice Articolo:
+        <input type="text" id="code" /> <br />
+        <br />
+        Descrizione:
+        <input type="text" id="descr" /> <br />
+        <br />
+        Pezzi per cartone:
+        <input type="text" id="pzcart" /> <br />
+        <br />
+        Iva:
+        <select id="iva">
+            <option value="Iva Esente">Iva Esente</option>
+            <option value="Iva Rivendita 4%">Iva Rivendita 4%</option>
+            <option value="Iva Rivendita 10%">Iva Rivendita 10%</option>
+            <option value="Iva Rivendita 22%">Iva Rivendita 22%</option>
+          </select> <br />
+        <br />
+        Famiglia assortimento:
+        <select id="fam">
+            <option value="volvo">Volvo</option>
+            <option value="saab">Saab</option>
+            <option value="opel">Opel</option>
+            <option value="audi">Audi</option>
+          </select> <br />
+        <br />
+    
+        <button type="button" onclick="buildArticle()">
+          Salva
+        </button>
+    
+        
+    
+        
+          
+  </body>
+</html>
