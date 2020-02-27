@@ -6,7 +6,7 @@
   </head>
   <style>
     table {
-      width: 85%;
+      width: 90%;
     }
     th,
     td {
@@ -19,24 +19,23 @@
   </style>
 
   <body>
-    <h1><button id="addToCart">Visualizza Carrello</button></h1>
+    <h1>
+      <form>
+        <input type="button" value="Visualizza carrello" onclick="" />
+      </form>
+    </h1>
     <h2>Supermarket</h2>
     <h3>
       <form>
-        <input
-          type="button"
-          value="Inserisci Articolo"
-          onclick="addArticle()"
-        />
+        <input type="button" value="Inserisci Articolo" onclick="showForm()" />
       </form>
     </h3>
 
     <table id="articleId"></table>
 
-    <p id="demo"></p>
+    <br />
   </body>
   <script>
     getArticles();
-    getIva();
   </script>
 </html>
