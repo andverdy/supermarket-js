@@ -6,7 +6,7 @@
   </head>
   <style>
     table {
-      width: 90%;
+      width: 84%;
     }
     th,
     td {
@@ -15,6 +15,10 @@
     h2 {
       text-align: center;
       font-size: 60px;
+    }
+    div {
+      margin: 0 auto;
+      width: 180px;
     }
   </style>
 
@@ -26,8 +30,35 @@
     </h1>
     <h2>Supermarket</h2>
     <h3>
+      <div id="view_form">
+        <h3>Aggiorna Articolo</h3>
+        <form>
+          <label for="cod">Codice Articolo</label>
+          <input value="" type="text" id="code" /> <br />
+          <br />
+          <label for="descr">Descrizione</label>
+          <input value="" type="text" id="descr" /> <br />
+          <br />
+          <label for="pz">Pezzi per cartone</label>
+          <input onload="this.value=codArt" type="text" id="pzcart" /> <br />
+          <br />
+          <label for="cod">Iva</label><br />
+          <select id="iva"></select>
+          <br />
+          <br />
+          <label for="cod">Famiglia Assortimento</label><br />
+          <select id="fam"></select>
+          <br />
+          <br />
+
+          <button type="button" onclick="addArticle()">
+            Salva Modifiche
+          </button>
+        </form>
+      </div>
+
       <form>
-        <input type="button" value="Inserisci Articolo" onclick="showForm()" />
+        <input type="button" value="Inserisci Articolo" onclick="viewForm()" />
       </form>
     </h3>
 
@@ -37,5 +68,7 @@
   </body>
   <script>
     getArticles();
+    getIva();
+    getFamAssort();
   </script>
 </html>

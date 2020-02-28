@@ -1,5 +1,5 @@
-var rowcode = "";
 function getArticles() {
+  document.getElementById("view_form").style.display = "none";
   var xmlhttp = new XMLHttpRequest();
   xmlhttp.onreadystatechange = callArticles;
 
@@ -48,7 +48,6 @@ function callArticles() {
         "</td>" +
         "<tr>";
     }
-    //'<input type="button" onClick="gotoNode(\'' + result.name + '\')" />'
     document.getElementById("articleId").innerHTML = htmlArticles;
   }
 }
@@ -76,13 +75,9 @@ function addArticle() {
   xhr.onload = () => {
     console.log(xhr.responseText);
   };
-  alert("Articolo aggiungo al carrello!");
-  window.location = "file:///C:/Users/music/OneDrive/Desktop/supermarket/.html";
-}
-
-function showForm() {
-  window.location =
-    "file:///C:/Users/music/OneDrive/Desktop/supermarket/save.html";
+  alert("Articolo aggiunto al database!");
+  document.getElementById("view_form").style.display = "none";
+  location.reload();
 }
 
 function getIva() {
@@ -91,13 +86,17 @@ function getIva() {
     if (this.readyState == 4 && this.status == 200) {
       var responseObject = JSON.parse(this.responseText);
 
-      var iva = responseObject;
+      // for (var i of responseObject) {
+      //   console.log("stampa iva " + i.idIva + " " + i.descrizione);
+      // }
+      var arrayIva = responseObject;
       var ivaHtml = "";
-      for (var i of iva) {
+      for (var i of responseObject) {
         ivaHtml +=
           "<option value=" + i.idIva + ">" + i.descrizione + "</option>";
       }
     }
+
     document.getElementById("iva").innerHTML = ivaHtml;
   };
 
@@ -111,12 +110,12 @@ function getFamAssort() {
     if (this.readyState == 4 && this.status == 200) {
       var responseObject = JSON.parse(this.responseText);
 
-      var famAss = responseObject;
       var famHtml = "";
-      for (var i of famAss) {
+      for (var i of responseObject) {
         famHtml += "<option value=" + i.id + ">" + i.descrizione + "</option>";
       }
     }
+
     document.getElementById("fam").innerHTML = famHtml;
   };
 
@@ -124,14 +123,10 @@ function getFamAssort() {
   xmlhttp.send();
 }
 
-// http://localhost:8080/rest/api/article/by-code?getCod=
-
 function getArticleByCode(code) {
-  console.log("invio la richiesta");
-  // prendi il codice dalla riga corrispondente
-
   var url = "http://localhost:8080/rest/api/article/by-code?getCod=";
   url += code;
+
   var xmlhttp = new XMLHttpRequest();
   xmlhttp.onreadystatechange = callArticleByCode;
 
@@ -140,42 +135,32 @@ function getArticleByCode(code) {
 }
 
 function callArticleByCode() {
-  console.log("in attesa di risposta");
-
   if (this.readyState == 4 && this.status == 200) {
-    var responseObject = JSON.parse(this.responseText);
-    var codArt = responseObject.codArt;
-    var descrizione = responseObject.descrizione;
-    var pzCart = responseObject.pzCart;
-    var ivaDesc = responseObject.ivaDesc;
-    var famAssDesc = responseObject.famAssDesc;
-    var idIva = responseObject.idIva;
-    var idFamAss = responseObject.idFamAss;
+    var article = JSON.parse(this.responseText);
 
-    console.log(
-      "stampa " +
-        codArt +
-        " " +
-        descrizione +
-        " " +
-        pzCart +
-        " " +
-        ivaDesc +
-        " " +
-        famAssDesc +
-        " " +
-        idIva +
-        " " +
-        idFamAss
-    );
+    var ivaOptions = document.getElementById("iva").options;
 
-    window.location =
-      "file:///C:/Users/music/OneDrive/Desktop/supermarket/save.html";
+    for (var iva of ivaOptions) {
+      if (iva.value == article.idIva) {
+        iva.selected = true;
+      }
+    }
 
-    // document.getElementById("code").innerHTML = ivaDesc;
-    // document.getElementById("code").innerHTML = famAssDesc;
+    var famOptions = document.getElementById("fam").options;
+
+    for (var fam of famOptions) {
+      if (fam.value == article.idFamAss) {
+        fam.selected = true;
+      }
+    }
+
+    document.getElementById("view_form").style.display = "block";
+    document.getElementById("code").value = article.codArt;
+    document.getElementById("descr").value = article.descrizione;
+    document.getElementById("pzcart").value = article.pzCart;
   }
-  document.getElementById("code").innerHTML = codArt;
-  document.getElementById("descr").innerHTML = descrizione;
-  document.getElementById("pzcart").innerHTML = pzCart;
+}
+
+function viewForm() {
+  document.getElementById("view_form").style.display = "block";
 }
