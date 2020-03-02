@@ -14,7 +14,7 @@
       border: 1px solid;
     }
     h1 {
-      margin-left: 500px;
+      margin-left: 550px;
       font-size: 40px;
     }
     h2 {
@@ -29,9 +29,29 @@
     #cart_table {
       margin-left: 300px;
     }
+    #articleId {
+      margin-left: 100px;
+    }
+    #add_bott {
+      margin-left: 100px;
+    }
+    #home_bott {
+      margin-left: -1200px;
+    }
+    #viewCart_bott {
+      margin-left: 1180px;
+      margin-top: 20px;
+    }
   </style>
 
   <body>
+    <input
+      id="viewCart_bott"
+      type="button"
+      value="Visualizza carrello"
+      onclick="viewCart()"
+    />
+    <input id="home_bott" type="button" value="Home" onclick="getArticles()" />
     <table id="cart_table"></table>
     <h1>Supermarket</h1>
     <h3>
@@ -61,11 +81,14 @@
           </button>
         </form>
       </div>
+
       <form>
-        <input type="button" value="Visualizza carrello" onclick="viewCart()" />
-      </form>
-      <form>
-        <input type="button" value="Inserisci Articolo" onclick="viewForm()" />
+        <input
+          id="add_bott"
+          type="button"
+          value="Inserisci Articolo"
+          onclick="formDisplay()"
+        />
       </form>
     </h3>
 

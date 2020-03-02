@@ -76,10 +76,11 @@ function addArticle() {
   xhr.onload = () => {
     console.log(xhr.responseText);
   };
+
   alert("Articolo aggiunto al database!");
-  document.getElementById("view_form").style.display = "none";
 }
 
+var arrayIva = [];
 function getIva() {
   var xmlhttp = new XMLHttpRequest();
   xmlhttp.onreadystatechange = function callIva() {
@@ -89,7 +90,7 @@ function getIva() {
       // for (var i of responseObject) {
       //   console.log("stampa iva " + i.idIva + " " + i.descrizione);
       // }
-      var arrayIva = responseObject;
+      arrayIva = responseObject;
       var ivaHtml = "";
       for (var i of responseObject) {
         ivaHtml +=
@@ -103,13 +104,13 @@ function getIva() {
   xmlhttp.open("GET", "http://localhost:8080/rest/api/iva/list", true);
   xmlhttp.send();
 }
-
+var arrayFam = [];
 function getFamAssort() {
   var xmlhttp = new XMLHttpRequest();
   xmlhttp.onreadystatechange = function callFam() {
     if (this.readyState == 4 && this.status == 200) {
       var responseObject = JSON.parse(this.responseText);
-
+      arrayFam = responseObject;
       var famHtml = "";
       for (var i of responseObject) {
         famHtml += "<option value=" + i.id + ">" + i.descrizione + "</option>";
@@ -161,8 +162,21 @@ function callArticleByCode() {
     document.getElementById("pzcart").value = article.pzCart;
   }
 }
-
-function viewForm() {
+function formDisplay() {
   document.getElementById("view_form").style.display = "block";
   document.getElementById("cart_table").style.display = "none";
+  document.getElementById("code").value = "";
+  document.getElementById("descr").value = "";
+  document.getElementById("pzcart").value = "";
+
+  var ivaHtml = "";
+  for (var i of arrayIva) {
+    ivaHtml += "<option value=" + i.idIva + ">" + i.descrizione + "</option>";
+  }
+  document.getElementById("iva").innerHTML = ivaHtml;
+  var famHtml = "";
+  for (var i of arrayFam) {
+    famHtml += "<option value=" + i.id + ">" + i.descrizione + "</option>";
+  }
+  document.getElementById("fam").innerHTML = famHtml;
 }

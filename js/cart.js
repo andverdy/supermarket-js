@@ -2,7 +2,7 @@ var keyOne = null;
 var keyTwo = null;
 
 function addToCart(code) {
-  //alert("Articolo Aggiunto Al Carrello");
+  alert("Articolo Aggiunto Al Carrello");
   var url = "http://localhost:8080/rest/api/cart/insert?codArt=";
   if (keyOne != null) {
     url += code + "&cartKey=" + keyOne;
