@@ -1,5 +1,6 @@
 function getArticles() {
   document.getElementById("view_form").style.display = "none";
+  document.getElementById("cart_table").style.display = "none";
   var xmlhttp = new XMLHttpRequest();
   xmlhttp.onreadystatechange = callArticles;
 
@@ -10,8 +11,8 @@ function getArticles() {
 function callArticles() {
   if (this.readyState == 4 && this.status == 200) {
     var responseObject = JSON.parse(this.responseText);
-
     var articles = responseObject;
+    //console.log(articles);
     var htmlArticles =
       "<tr>" +
       "<th>Codice Articolo</th>" +
@@ -42,9 +43,9 @@ function callArticles() {
         "')\"/>" +
         "</td>" +
         "<td>" +
-        "<button type=button onclick=>" +
-        "Aggiungi al Carrello" +
-        "</button>" +
+        '<input value="Aggiungi Al Carrello" type="button" onClick="addToCart(\'' +
+        art.codArt +
+        "')\"/>" +
         "</td>" +
         "<tr>";
     }
@@ -77,7 +78,6 @@ function addArticle() {
   };
   alert("Articolo aggiunto al database!");
   document.getElementById("view_form").style.display = "none";
-  location.reload();
 }
 
 function getIva() {
@@ -124,6 +124,7 @@ function getFamAssort() {
 }
 
 function getArticleByCode(code) {
+  document.getElementById("cart_table").style.display = "none";
   var url = "http://localhost:8080/rest/api/article/by-code?getCod=";
   url += code;
 
@@ -163,4 +164,5 @@ function callArticleByCode() {
 
 function viewForm() {
   document.getElementById("view_form").style.display = "block";
+  document.getElementById("cart_table").style.display = "none";
 }
