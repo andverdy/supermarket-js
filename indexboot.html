@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <script src="js/articles.js"></script>
+    <script src="js/cart.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/mystyle.css" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <link rel="stylesheet" href="lib/css/bootstrap.min.css" />
+  </head>
+
+  <body>
+    <div class="container">
+       
+      <input
+          class="btn btn-primary"
+          id="add_bott"
+          type="button"
+          value="Inserisci Articolo"
+          onclick="formDisplay()"
+        />
+        <input
+        class="btn btn-danger"
+        id="home_bott"
+        type="button"
+        value="Home"
+        onclick="getArticles()"
+      />
+      <input
+        class="btn btn-warning"
+        id="viewCart_button"
+        type="button"
+        value="Visualizza Carrello"
+        onclick="viewCart()"
+      />
+
+      <h1 id="title_page" class="title">
+        Supermarket<span class="badge badge-secondary">Shop Online</span>
+      </h1>
+
+      
+        <table class="table" id="cartTable" >
+            
+          <thead id class="black white-text">
+            <h2 class="cart_title" id="title_Cart">Carrello Acquisti</h2>
+            <tr>
+              <th scope="col">Codice Articolo</th>
+              <th scope="col">Descrizione</th>
+              <th scope="col">PZ</th>
+              <th scope="col">Iva</th>
+              <th scope="col">Famiglia Assortimento</th>
+              <th scope="col">Quantita</th>
+            </tr>
+          </thead>
+          <tbody id="cart_table"></tbody>
+        </table>
+      </table>
+
+      <h3>
+        <div class="container" id="view_form">
+          <h3 class="title_form">Aggiorna Articolo</h3>
+          
+          <form>
+            <div class="form-group">
+              <label for="code_art">Codice Articolo:</label>
+              <input value="" type="code" class="form-control" id="code" placeholder="Inserisci Codice Articolo email" name="code Article">
+            </div>
+            <div class="form-group">
+              <label for="pwd">Descrizione:</label>
+              <input value="" type="descrizioine" class="form-control" id="descr" placeholder="Inserisci Descrizione" name="descr">
+            </div>
+            <div class="form-group">
+              <label for="pwd">Pezzi per Cartone:</label>
+              <input value="" type="pezzi" class="form-control" id="pzcart" placeholder="Inserisci quantita pezzi" name="pezzi">
+            </div>
+            <div class="form-group">
+              <label for="iva">Iva</label><br />
+            <select id="iva"></select>
+            </div>
+            <div class="form-group">
+              <label for="fam">Famiglia Assortimento</label><br />
+            <select id="fam"></select>
+            </div>
+            
+            <input
+        class="btn btn-warning"
+        id="save_button"
+        type="button"
+        value="Salva Modifiche"
+        onclick="addArticle()"
+      />
+          </form>
+        </div>
+      </h3>
+
+      <table class="table" id="articlesTable">
+        
+        <thead id class="black white-text">
+          <tr>
+            <th scope="col">Codice Articolo</th>
+            <th scope="col">Descrizione</th>
+            <th scope="col">PZ</th>
+            <th scope="col">Iva</th>
+            <th scope="col">Famiglia Assortimento</th>
+          </tr>
+        </thead>
+        <tbody id="articles"></tbody>
+      </table>
+
+      <br />
+    </div>
+  </body>
+  <script>
+    getArticles();
+    getIva();
+    getFamAssort();
+  </script>
+</html>

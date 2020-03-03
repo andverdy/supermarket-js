@@ -5,6 +5,11 @@
     <script src="js/articles.js"></script>
     <script src="js/cart.js"></script>
     <link rel="stylesheet" type="text/css" href="css/mystyle.css" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <link rel="stylesheet" src="lib/css/bootstrap.min.css" />
   </head>
 
   <body>
@@ -12,7 +17,7 @@
       class="button_viewCart"
       id="viewCart_button"
       type="button"
-      value="Visualizza Carrello Aggiornato"
+      value="Visualizza Carrello"
       onclick="viewCart()"
     />
     <input
@@ -22,7 +27,7 @@
       value="Home"
       onclick="getArticles()"
     />
-    <table class="table_header_cart" id="header_cart">
+    <!-- <table class="table_header_cart" id="cartTable">
       <h2 id="h2_cart">|-Carrello degli Acquisti-|</h2>
       <tr>
         <td class="header_cart_code">Codice Articolo</td>
@@ -32,9 +37,9 @@
         <td class="header_cart_fam">FamAssort</td>
         <td class="header_cart_qnt">Q.</td>
       </tr>
-    </table>
+    </table> -->
 
-    <table class="table_cart" id="cart_table"></table>
+    <table class="table_cart" id="cartTable"></table>
 
     <h1>Supermarket</h1>
     <h3>
@@ -76,15 +81,18 @@
       </form>
     </h3>
 
-    <table class="table_header_art">
-      <th class="code_header ">Codice Articolo</th>
-      <th class="desc_header">Descrizione</th>
-      <th class="pz_header">Pz</th>
-      <th class="iva_header">Iva</th>
-      <th class="fam_header">FamAssort</th>
+    <table class="table" id="articlesTable">
+      <thead id class="black white-text">
+        <tr>
+          <th scope="col">Codice Articolo</th>
+          <th scope="col">Descrizione</th>
+          <th scope="col">PZ</th>
+          <th scope="col">Iva</th>
+          <th scope="col">Famiglia Assortimento</th>
+        </tr>
+      </thead>
+      <tbody id="articles"></tbody>
     </table>
-
-    <table class="table_art" id="articleId"></table>
 
     <br />
   </body>

@@ -26,9 +26,9 @@ function addToCart(code) {
 
 function viewCart() {
   document.getElementById("view_form").style.display = "none";
-  document.getElementById("cart_table").style.display = "block";
-  document.getElementById("header_cart").style.display = "block";
-  document.getElementById("h2_cart").style.display = "block";
+  document.getElementById("cartTable").style.display = "block";
+  document.getElementById("title_Cart").style.display = "block";
+  document.getElementById("title_page").style.display = "none";
 
   var url = "http://localhost:8080/rest/api/cart/by-key?cartKey=";
   url += cartKey;

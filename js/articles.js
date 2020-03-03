@@ -3,9 +3,9 @@ var arrayFam = [];
 
 function getArticles() {
   document.getElementById("view_form").style.display = "none";
-  document.getElementById("cart_table").style.display = "none";
-  document.getElementById("header_cart").style.display = "none";
-  document.getElementById("h2_cart").style.display = "none";
+  document.getElementById("cartTable").style.display = "none";
+  document.getElementById("title_Cart").style.display = "none";
+  document.getElementById("title_page").style.display = "block";
 
   var xmlhttp = new XMLHttpRequest();
   xmlhttp.onreadystatechange = callArticles;
@@ -37,23 +37,23 @@ function callArticles() {
         "<td>" +
         art.famAssDesc +
         "<td>" +
-        '<input value="Modifica Articolo" type="button" onClick="getArticleByCode(\'' +
+        '<input  class="btn btn-danger" value="Modifica Articolo" type="button" onClick="getArticleByCode(\'' +
         art.codArt +
         "')\"/>" +
         "</td>" +
         "<td>" +
-        '<input value="Aggiungi Al Carrello" type="button" onClick="addToCart(\'' +
+        '<input class="btn btn-primary" value="Aggiungi Al Carrello" type="button" onClick="addToCart(\'' +
         art.codArt +
         "')\"/>" +
         "</td>" +
         "<tr>";
     }
-    document.getElementById("articleId").innerHTML = htmlArticles;
+    document.getElementById("articles").innerHTML = htmlArticles;
   }
 }
 
 function addArticle() {
-  const xhr = new XMLHttpRequest();
+  var xhr = new XMLHttpRequest();
 
   xhr.open("PUT", "http://localhost:8080/rest/api/article/save", true);
 
@@ -85,6 +85,7 @@ function addArticle() {
   xhr.onload = () => {
     console.log(xhr.responseText);
   };
+  document.getElementById("view_form").style.display = "none";
 }
 
 function getIva() {
@@ -169,9 +170,8 @@ function callArticleByCode() {
 }
 function formDisplay() {
   document.getElementById("view_form").style.display = "block";
-  document.getElementById("cart_table").style.display = "none";
-  document.getElementById("header_cart").style.display = "none";
-  document.getElementById("h2_cart").style.display = "none";
+  document.getElementById("cartTable").style.display = "none";
+  document.getElementById("title_Cart").style.display = "none";
   document.getElementById("code").value = "";
   document.getElementById("descr").value = "";
   document.getElementById("pzcart").value = "";
@@ -186,4 +186,5 @@ function formDisplay() {
     famHtml += "<option value=" + i.id + ">" + i.descrizione + "</option>";
   }
   document.getElementById("fam").innerHTML = famHtml;
+  document.getElementById("title_page").style.display = "block";
 }

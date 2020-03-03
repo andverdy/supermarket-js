@@ -2,12 +2,11 @@
   width: 90%;
 }
 .table_header_cart {
-  width: 527px;
+  width: 480px;
 }
 
 .table_cart {
-  margin-left: 300px;
-  width: 200px;
+  width: 100%;
 }
 td {
   border: 1px solid;
@@ -36,41 +35,42 @@ div {
   margin-left: 890px;
   margin-top: 20px;
 }
-.code_header {
-  width: 105px;
-  border: 1px solid;
+
+.container {
+  margin-top: 30px;
 }
-.desc_header {
-  width: 343px;
-  border: 1px solid;
+.title {
+  font-size: 50px;
+  margin-left: 300px;
 }
-.pz_header {
-  width: 25px;
-  border: 1px solid;
+.table {
+  margin-top: 60px;
 }
-.iva_header {
-  width: 140px;
-  border: 1px solid;
+#viewCart_button {
+  margin-left: 950px;
 }
-.fam_header {
-  width: 210px;
-  border: 1px solid;
+#addArt_button {
+  margin-left: -400px;
 }
-.header_cart_code {
-  width: 89px;
+#header {
+  width: 750px;
 }
-.header_cart_desc {
-  width: 145px;
+.cart_title {
+  margin-left: 250px;
 }
-.header_cart_pz {
-  width: 30px;
+#home_button {
+  margin-right: 400px;
 }
-.header_cart_iva {
-  width: 112px;
+.iva {
+  margin-left: 30px;
 }
-.header_cart_fam {
-  width: 100px;
+
+#view_form {
+  margin-left: -70px;
 }
-.header_cart_qnt {
-  width: 15px;
+#save_button {
+  margin-left: 520px;
+}
+.title_form {
+  margin-left: 511px;
 }
