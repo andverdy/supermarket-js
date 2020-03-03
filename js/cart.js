@@ -1,36 +1,37 @@
-var keyOne = null;
-var keyTwo = null;
+var cartKey = null;
 
 function addToCart(code) {
-  alert("Articolo Aggiunto Al Carrello");
   var url = "http://localhost:8080/rest/api/cart/insert?codArt=";
-  if (keyOne != null) {
-    url += code + "&cartKey=" + keyOne;
+  if (cartKey != null) {
+    url += code + "&cartKey=" + cartKey;
   } else {
     url += code;
   }
 
-  //console.log("URL: " + url);
-
   var xmlhttp = new XMLHttpRequest();
-  xmlhttp.onreadystatechange = callCart;
+  xmlhttp.onreadystatechange = function() {
+    if (this.readyState == 4) {
+      if (this.status == 200) {
+        alert("Articolo Aggiunto Al Carrello");
+        cartKey = this.responseText;
+      } else {
+        alert("Errore inserimento articolo!");
+      }
+    }
+  };
 
   xmlhttp.open("POST", url, true);
   xmlhttp.send();
 }
 
-function callCart() {
-  if (this.readyState == 4 && this.status == 200) {
-    keyOne = this.responseText;
-  }
-  keyTwo = keyOne;
-}
-var ccc = null;
 function viewCart() {
   document.getElementById("view_form").style.display = "none";
   document.getElementById("cart_table").style.display = "block";
+  document.getElementById("header_cart").style.display = "block";
+  document.getElementById("h2_cart").style.display = "block";
+
   var url = "http://localhost:8080/rest/api/cart/by-key?cartKey=";
-  url += keyTwo;
+  url += cartKey;
   var xmlhttp = new XMLHttpRequest();
   xmlhttp.onreadystatechange = callViewCart;
 
@@ -40,43 +41,13 @@ function viewCart() {
 function callViewCart() {
   if (this.readyState == 4 && this.status == 200) {
     var cartResult = JSON.parse(this.responseText);
-    //console.log(cartResult);
-    // for (const [key, value] of Object.entries(cartResult)) {
-    //   console.log(key, value);
-    //   console.log(value);
-    // }
-    var map = new Map();
-    var mapTwo = new Map();
     var carrello = [];
-    for (var key in cartResult) {
-      if (!cartResult.hasOwnProperty(key)) {
-        continue;
-      }
-      //console.log(key, cartResult[key]);
-      map = cartResult[key];
+
+    for (var artCode in cartResult.articoli) {
+      console.log(cartResult.articoli[artCode]);
+      carrello.push(cartResult.articoli[artCode]);
     }
-    for (var key in map) {
-      if (!map.hasOwnProperty(key)) {
-        continue;
-      }
-      console.log(map[key]);
-      carrello.push(map[key]);
-    }
-    for (var key in mapTwo) {
-      if (!map.hasOwnProperty(key)) {
-        continue;
-      }
-    }
-    var htmlArtCart =
-      "<h2>|-Carrello degli Acquisti-|</h2>" +
-      "<tr>" +
-      "<th>Codice Articolo</th>" +
-      "<th>Descrizione</th>" +
-      "<th>PzCart</th>" +
-      "<th>Iva</th>" +
-      "<th>FamAssort</th>" +
-      "<th>Quantita</th>" +
-      "</tr>";
+    var htmlArtCart = "";
 
     for (var art of carrello) {
       htmlArtCart +=

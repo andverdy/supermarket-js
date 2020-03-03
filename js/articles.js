@@ -1,6 +1,12 @@
+var arrayIva = [];
+var arrayFam = [];
+
 function getArticles() {
   document.getElementById("view_form").style.display = "none";
   document.getElementById("cart_table").style.display = "none";
+  document.getElementById("header_cart").style.display = "none";
+  document.getElementById("h2_cart").style.display = "none";
+
   var xmlhttp = new XMLHttpRequest();
   xmlhttp.onreadystatechange = callArticles;
 
@@ -13,19 +19,12 @@ function callArticles() {
     var responseObject = JSON.parse(this.responseText);
     var articles = responseObject;
     //console.log(articles);
-    var htmlArticles =
-      "<tr>" +
-      "<th>Codice Articolo</th>" +
-      "<th>Descrizione</th>" +
-      "<th>PzCart</th>" +
-      "<th>Iva</th>" +
-      "<th>FamAssort</th>" +
-      "</tr>";
+    var htmlArticles = "";
 
     for (var art of articles) {
       htmlArticles +=
         "<tr>" +
-        "<td>" +
+        "<td >" +
         art.codArt +
         "</td>" +
         "<td>" +
@@ -58,6 +57,16 @@ function addArticle() {
 
   xhr.open("PUT", "http://localhost:8080/rest/api/article/save", true);
 
+  xhr.onreadystatechange = function() {
+    if (this.readyState == 4) {
+      if (this.status == 200) {
+        alert("Articolo aggiunto al database!");
+      } else {
+        alert("Errore inserimento articolo!");
+      }
+    }
+  };
+
   var data = {};
   data.codArt = document.getElementById("code").value;
   data.descrizione = document.getElementById("descr").value;
@@ -76,11 +85,8 @@ function addArticle() {
   xhr.onload = () => {
     console.log(xhr.responseText);
   };
-
-  alert("Articolo aggiunto al database!");
 }
 
-var arrayIva = [];
 function getIva() {
   var xmlhttp = new XMLHttpRequest();
   xmlhttp.onreadystatechange = function callIva() {
@@ -104,7 +110,6 @@ function getIva() {
   xmlhttp.open("GET", "http://localhost:8080/rest/api/iva/list", true);
   xmlhttp.send();
 }
-var arrayFam = [];
 function getFamAssort() {
   var xmlhttp = new XMLHttpRequest();
   xmlhttp.onreadystatechange = function callFam() {
@@ -165,6 +170,8 @@ function callArticleByCode() {
 function formDisplay() {
   document.getElementById("view_form").style.display = "block";
   document.getElementById("cart_table").style.display = "none";
+  document.getElementById("header_cart").style.display = "none";
+  document.getElementById("h2_cart").style.display = "none";
   document.getElementById("code").value = "";
   document.getElementById("descr").value = "";
   document.getElementById("pzcart").value = "";

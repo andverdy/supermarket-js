@@ -1,0 +1,76 @@
+.table_art {
+  width: 90%;
+}
+.table_header_cart {
+  width: 527px;
+}
+
+.table_cart {
+  margin-left: 300px;
+  width: 200px;
+}
+td {
+  border: 1px solid;
+}
+h1 {
+  margin-left: 450px;
+  font-size: 40px;
+}
+h2 {
+  margin-left: 355px;
+  font-size: 40px;
+}
+
+div {
+  margin-left: 520px;
+  width: 180px;
+}
+
+.button_add {
+  margin-left: 3px;
+}
+.button_home {
+  margin-left: -1060px;
+}
+.button_viewCart {
+  margin-left: 890px;
+  margin-top: 20px;
+}
+.code_header {
+  width: 105px;
+  border: 1px solid;
+}
+.desc_header {
+  width: 343px;
+  border: 1px solid;
+}
+.pz_header {
+  width: 25px;
+  border: 1px solid;
+}
+.iva_header {
+  width: 140px;
+  border: 1px solid;
+}
+.fam_header {
+  width: 210px;
+  border: 1px solid;
+}
+.header_cart_code {
+  width: 89px;
+}
+.header_cart_desc {
+  width: 145px;
+}
+.header_cart_pz {
+  width: 30px;
+}
+.header_cart_iva {
+  width: 112px;
+}
+.header_cart_fam {
+  width: 100px;
+}
+.header_cart_qnt {
+  width: 15px;
+}

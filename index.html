@@ -4,55 +4,38 @@
   <head>
     <script src="js/articles.js"></script>
     <script src="js/cart.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/mystyle.css" />
   </head>
-  <style>
-    table {
-      width: 84%;
-    }
-    th,
-    td {
-      border: 1px solid;
-    }
-    h1 {
-      margin-left: 550px;
-      font-size: 40px;
-    }
-    h2 {
-      margin-left: 130px;
-      font-size: 40px;
-    }
-
-    div {
-      margin-left: 520px;
-      width: 180px;
-    }
-    #cart_table {
-      margin-left: 300px;
-    }
-    #articleId {
-      margin-left: 100px;
-    }
-    #add_bott {
-      margin-left: 100px;
-    }
-    #home_bott {
-      margin-left: -1200px;
-    }
-    #viewCart_bott {
-      margin-left: 1180px;
-      margin-top: 20px;
-    }
-  </style>
 
   <body>
     <input
-      id="viewCart_bott"
+      class="button_viewCart"
+      id="viewCart_button"
       type="button"
-      value="Visualizza carrello"
+      value="Visualizza Carrello Aggiornato"
       onclick="viewCart()"
     />
-    <input id="home_bott" type="button" value="Home" onclick="getArticles()" />
-    <table id="cart_table"></table>
+    <input
+      class="button_home"
+      id="home_bott"
+      type="button"
+      value="Home"
+      onclick="getArticles()"
+    />
+    <table class="table_header_cart" id="header_cart">
+      <h2 id="h2_cart">|-Carrello degli Acquisti-|</h2>
+      <tr>
+        <td class="header_cart_code">Codice Articolo</td>
+        <td class="header_cart_desc">Descrizione</td>
+        <td class="header_cart_pz">Pz</td>
+        <td class="header_cart_iva">Iva</td>
+        <td class="header_cart_fam">FamAssort</td>
+        <td class="header_cart_qnt">Q.</td>
+      </tr>
+    </table>
+
+    <table class="table_cart" id="cart_table"></table>
+
     <h1>Supermarket</h1>
     <h3>
       <div id="view_form">
@@ -84,6 +67,7 @@
 
       <form>
         <input
+          class="button_add"
           id="add_bott"
           type="button"
           value="Inserisci Articolo"
@@ -92,7 +76,15 @@
       </form>
     </h3>
 
-    <table id="articleId"></table>
+    <table class="table_header_art">
+      <th class="code_header ">Codice Articolo</th>
+      <th class="desc_header">Descrizione</th>
+      <th class="pz_header">Pz</th>
+      <th class="iva_header">Iva</th>
+      <th class="fam_header">FamAssort</th>
+    </table>
+
+    <table class="table_art" id="articleId"></table>
 
     <br />
   </body>
