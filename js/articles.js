@@ -86,6 +86,7 @@ function addArticle() {
     console.log(xhr.responseText);
   };
   document.getElementById("view_form").style.display = "none";
+  document.getElementById("title_page").style.display = "block";
 }
 
 function getIva() {
@@ -131,7 +132,9 @@ function getFamAssort() {
 }
 
 function getArticleByCode(code) {
-  document.getElementById("cart_table").style.display = "none";
+  document.getElementById("view_form").style.display = "block";
+  document.getElementById("cartTable").style.display = "none";
+  document.getElementById("title_Cart").style.display = "none";
   var url = "http://localhost:8080/rest/api/article/by-code?getCod=";
   url += code;
 
